@@ -1,0 +1,32 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+use App\Models\Teacher;
+use App\Models\User;
+use Illuminate\Support\Str;
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Teacher>
+ */
+class TeacherFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'user_id' => User::factory(),
+            'employee_id' => 'EMP-' . fake()->unique()->numberBetween(1000, 9999),
+            'qualification' => fake()->randomElement(['B.Ed', 'M.Ed', 'PhD']),
+            'joining_date' => fake()->date(),
+            'specialization' => fake()->randomElement(['Maths', 'Science', 'English']),
+            'salary' => fake()->numberBetween(25000, 60000),
+            'status' => 'active',
+        ];
+    }
+}
